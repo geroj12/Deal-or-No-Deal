@@ -1,3 +1,4 @@
+
 /**
  *@author Fazeleh Daneshmandi, Aleksey Leinweber, Felix Kuhlemann 
  */
@@ -6,8 +7,8 @@ import java.util.*;
 import java.io.*;
 
 public class DealOrNoDeal {
-	
-	//Variablen
+
+	// Variablen
 	static Scanner scan = new Scanner(System.in);
 	static ArrayList<Integer> ungeoffneteKoffer = new ArrayList<>();
 	static ArrayList<Integer> geoffneteKoffer = new ArrayList<>();
@@ -15,12 +16,13 @@ public class DealOrNoDeal {
 	static ArrayList<Double> uebersicht = new ArrayList<>();
 	static int runden = 1;
 	static int kofferAnzahl = 11;
-	private static Integer spielerKoffer;
+	private static int spielerKoffer;
 	private static double spielerBetrag = 0; // Speichert den Geldbetrag im persönlichen Koffer des Spielers
 
 	/**
-	 * Initialisiert das Menü Objekt sowie die Spielereingabe und Menüauswahl wird verarbeitet.
-	 * @param args
+	 * Initialisiert das Menü Objekt sowie die Spielereingabe und Menüauswahl wird
+	 * verarbeitet.
+	 * 
 	 */
 	public static void main(String[] args) {
 		Menue menue = new Menue();
@@ -33,35 +35,31 @@ public class DealOrNoDeal {
 	 */
 	public static void hauptSpiel() {
 		initialisiereKoffer();
-		initialisiereGeldbetraege();
+		readDateiUndInitialisiereBetraege();
 		privaterKofferAuswahl();
 		kofferZiehungen();
 	}
 
 	/**
-	 * Spielerkoffer wird auswählt vom Spieler. Betrag wird vermerkt.
+	 * Spielerkoffer wird auswählt vom Spieler. Betrag wird vermerkt für Spielende.
 	 */
 	private static void privaterKofferAuswahl() {
+
 		System.out.println("\nUngeöffnete Koffer: " + ungeoffneteKoffer);
-		while (true) {
+		spielerKoffer = scan.nextInt();
+		int index = ungeoffneteKoffer.indexOf(spielerKoffer);
+		spielerBetrag = betraege.get(index);
+		betraege.remove(index);
+		ungeoffneteKoffer.remove(index);
+
+		while (spielerKoffer < 1 || spielerKoffer > 10) {
 			try {
 
 				System.out.print("Wähle deinen Koffer aus: ");
-				spielerKoffer = Integer.parseInt(scan.nextLine());
-				if (spielerKoffer < 1 || spielerKoffer > 10) {
-					System.err.println("Bitte eine Zahl zwischen 1 und 10 eingeben.");
-				} else {
-					int index = ungeoffneteKoffer.indexOf(spielerKoffer);
-					// Betrag des persönlichen Koffers speichern (wird am Ende ggf. ausgegeben)
-					spielerBetrag = betraege.get(index);
-					// Betrag und Koffer aus den aktiven Listen entfernen
-					// (der persönliche Koffer nimmt nicht am normalen Spielablauf teil)
-					betraege.remove(index);
-					ungeoffneteKoffer.remove(index);
-					break;
-				}
+				
 
 			} catch (Exception e) {
+				System.err.print("Bitte eine Zahl zwischen 1 und 10 eingeben.");
 			}
 		}
 	}
@@ -69,7 +67,7 @@ public class DealOrNoDeal {
 	/**
 	 * Textdatei von Beträgen wird eingelesen und von String zu Double umgewandelt.
 	 */
-	private static void initialisiereGeldbetraege() {
+	private static void readDateiUndInitialisiereBetraege() {
 
 		try (Scanner scan = new Scanner(new File("Geldbeträge.txt"))) {
 			while (scan.hasNextLine()) {
@@ -79,11 +77,12 @@ public class DealOrNoDeal {
 			Collections.shuffle(betraege);
 
 		} catch (Exception e) {
+
 		}
 	}
 
 	/**
-	 *Koffern werden erzeugt.
+	 * Koffern werden erzeugt.
 	 */
 	private static void initialisiereKoffer() {
 
@@ -94,10 +93,11 @@ public class DealOrNoDeal {
 
 	}
 
-	// 
+	//
 	/**
 	 * Berechnet den Durchschnitt aller noch nicht geöffneten Beträge als
-	 *Bankangebot
+	 * Bankangebot
+	 * 
 	 * @return Durchschnitt aller nichtgeöffneten Beträge.
 	 */
 	private static double berechneBankangebot() {
@@ -108,20 +108,12 @@ public class DealOrNoDeal {
 		for (int i = 0; i < betraege.size(); i++) {
 			summe = summe + betraege.get(i);
 		}
-
-		// 2. Spielerkoffer mit einbeziehen, weil der ist am Anfang ja rausgenommen
-		// worden
 		summe = summe + spielerBetrag;
-
-		// 3. Durchschnitt berechnen
 		double durchschnitt = summe / (ungeoffneteKoffer.size() + 1);
-
-		// 4. Durchschnitt zurückgeben
 		return durchschnitt;
 
 	}
 
-	
 	private static void zeigeUebersichtDerBetraege() {
 		uebersicht = new ArrayList<>(betraege);
 
@@ -170,7 +162,7 @@ public class DealOrNoDeal {
 				System.out.print("Welchen Koffer möchten Sie öffnen? ");
 				int eingabe;
 				try {
-					eingabe = Integer.parseInt(scan.nextLine());
+					eingabe = scan.nextInt();
 				} catch (Exception e) {
 					System.err.println("Bitte eine Zahl eingeben.");
 					i--;
