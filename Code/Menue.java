@@ -11,10 +11,11 @@ public class Menue {
 
 	}
 
-	void playerInput() throws IOException{
+	void playerInput() throws IOException {
 		Scanner scan = new Scanner(System.in);
 		playerName = scan.nextLine();
-		System.out.println("Hallo " + "\u001B[33m" + playerName + "\u001B[0m" + "!\n" + "\nWähle aus: \nRegeln&Spielstart(1)\nSpielstart(2)");
+		System.out.println("Hallo "  + playerName + "!\n"
+				+ "\nWähle aus: \nRegeln&Spielstart(1)\nSpielstart(2)");
 
 		while (true) {
 			try {
@@ -33,13 +34,13 @@ public class Menue {
 
 		switch (eingabe) {
 		case 1:
-			System.out.println(
-					"Regeln : Sie haben 26 Koffer und jeder dieser Koffer hat einen Wert von 0.01€ bis zu 1.000.000€!\n"
-							+ "\n" + "Runde 1: 6 Koffer werden ausgewählt.\n" + "Runde 2: 5 Koffer werden ausgewählt.\n"
-							+ "Runde 3: 4 Koffer werden ausgewählt.\n" + "Runde 4: 3 Koffer werden ausgewählt.\n"
-							+ "Runde 5: 2 Koffer werden ausgewählt.\n"
-							+ "Danach wird jeweils 1 Koffer pro Runde ausgewählt.\n" + "\n"
-							+ "Außerdem haben sie die Möglichkeit einen Speziellen Koffer auszuwählen den sie bis zum Ende des Spiels haben.\n");
+			// Regeln anzeigen, dann das Spiel starten
+			System.out.println("\n----- SPIELREGELN -----");
+			System.out.println("Es stehen 19 Koffer mit unterschiedlichen Geldbeträgen zur Auswahl.");
+			System.out.println("Du wählst zuerst deinen persönlichen Koffer.");
+			System.out.println("Danach öffnest du Runde für Runde weitere Koffer.");
+			System.out.println("Nach jeder Runde macht dir die Bank ein Angebot.");
+			System.out.println("Nimmst du es an (DEAL) oder spielst du weiter (NO DEAL)?");
 			DealOrNoDeal.HauptSpiel();
 			break;
 		case 2:
