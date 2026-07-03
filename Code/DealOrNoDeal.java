@@ -1,3 +1,4 @@
+
 /**
  *@author Fazeleh Daneshmandi, Aleksey Leinweber, Felix Kuhlemann 
  */
@@ -6,8 +7,8 @@ import java.util.*;
 import java.io.*;
 
 public class DealOrNoDeal {
-	
-	//Variablen
+
+	// Variablen
 	static Scanner scan = new Scanner(System.in);
 	static ArrayList<Integer> ungeoffneteKoffer = new ArrayList<>();
 	static ArrayList<Integer> geoffneteKoffer = new ArrayList<>();
@@ -15,11 +16,13 @@ public class DealOrNoDeal {
 	static ArrayList<Double> uebersicht = new ArrayList<>();
 	static int runden = 1;
 	static int kofferAnzahl = 11;
-	private static Integer spielerKoffer;
+	private static int spielerKoffer;
 	private static double spielerBetrag = 0; // Speichert den Geldbetrag im persönlichen Koffer des Spielers
 
 	/**
-	 * Initialisiert das Menü Objekt sowie die Spielereingabe und Menüauswahl wird verarbeitet.
+	 * Initialisiert das Menü Objekt sowie die Spielereingabe und Menüauswahl wird
+	 * verarbeitet.
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -43,25 +46,24 @@ public class DealOrNoDeal {
 	 */
 	private static void privaterKofferAuswahl() {
 		System.out.println("\nUngeöffnete Koffer: " + ungeoffneteKoffer);
-		while (true) {
+		while (spielerKoffer < 1 || spielerKoffer > 10) {
 			try {
 
 				System.out.print("Wähle deinen Koffer aus: ");
-				spielerKoffer = Integer.parseInt(scan.nextLine());
-				if (spielerKoffer < 1 || spielerKoffer > 10) {
-					System.err.println("Bitte eine Zahl zwischen 1 und 10 eingeben.");
-				} else {
-					int index = ungeoffneteKoffer.indexOf(spielerKoffer);
-					// Betrag des persönlichen Koffers speichern (wird am Ende ggf. ausgegeben)
-					spielerBetrag = betraege.get(index);
-					// Betrag und Koffer aus den aktiven Listen entfernen
-					// (der persönliche Koffer nimmt nicht am normalen Spielablauf teil)
-					betraege.remove(index);
-					ungeoffneteKoffer.remove(index);
-					break;
-				}
+				spielerKoffer = scan.nextInt();
+
+				int index = ungeoffneteKoffer.indexOf(spielerKoffer);
+				// Betrag des persönlichen Koffers speichern (wird am Ende ggf. ausgegeben)
+				spielerBetrag = betraege.get(index);
+				// Betrag und Koffer aus den aktiven Listen entfernen
+				// (der persönliche Koffer nimmt nicht am normalen Spielablauf teil)
+				betraege.remove(index);
+				ungeoffneteKoffer.remove(index);
+				break;
 
 			} catch (Exception e) {
+				System.err.println("Bitte eine Zahl eingeben.");
+
 			}
 		}
 	}
@@ -83,7 +85,7 @@ public class DealOrNoDeal {
 	}
 
 	/**
-	 *Koffern werden erzeugt.
+	 * Koffern werden erzeugt.
 	 */
 	private static void initialisiereKoffer() {
 
@@ -94,10 +96,11 @@ public class DealOrNoDeal {
 
 	}
 
-	// 
+	//
 	/**
 	 * Berechnet den Durchschnitt aller noch nicht geöffneten Beträge als
-	 *Bankangebot
+	 * Bankangebot
+	 * 
 	 * @return Durchschnitt aller nichtgeöffneten Beträge.
 	 */
 	private static double berechneBankangebot() {
@@ -121,7 +124,6 @@ public class DealOrNoDeal {
 
 	}
 
-	
 	private static void zeigeUebersichtDerBetraege() {
 		uebersicht = new ArrayList<>(betraege);
 
@@ -172,7 +174,7 @@ public class DealOrNoDeal {
 				try {
 					eingabe = Integer.parseInt(scan.nextLine());
 				} catch (Exception e) {
-					System.err.println("Bitte eine Zahl eingeben.");
+					//System.err.println("Bitte eine Zahl eingeben.");
 					i--;
 					continue;
 				}
