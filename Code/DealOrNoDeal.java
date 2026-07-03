@@ -46,15 +46,16 @@ public class DealOrNoDeal {
 	private static void privaterKofferAuswahl() {
 
 		System.out.println("\nUngeöffnete Koffer: " + ungeoffneteKoffer);
-		spielerKoffer = scan.nextInt();
-		int index = ungeoffneteKoffer.indexOf(spielerKoffer);
-		spielerBetrag = betraege.get(index);
-		betraege.remove(index);
-		ungeoffneteKoffer.remove(index);
+		
 
 		while (spielerKoffer < 1 || spielerKoffer > 10) {
+			
 			try {
-
+				spielerKoffer = scan.nextInt();
+				int index = ungeoffneteKoffer.indexOf(spielerKoffer);
+				spielerBetrag = betraege.get(index);
+				betraege.remove(index);
+				ungeoffneteKoffer.remove(index);
 				System.out.print("Wähle deinen Koffer aus: ");
 				
 
