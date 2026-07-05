@@ -45,15 +45,11 @@ public class DealOrNoDeal {
 	 * Spielerkoffer wird auswählt vom Spieler. Betrag wird vermerkt für Spielende.
 	 */
 	private static void privaterKofferAuswahl() {
-		System.out.println("\nUngeöffnete Koffer: " + ungeoffneteKoffer);
-		while (spielerKoffer < 1 || spielerKoffer > 10) {
-			try {
 
 		System.out.println("\nUngeöffnete Koffer: " + ungeoffneteKoffer);
-		
 
 		while (spielerKoffer < 1 || spielerKoffer > 10) {
-			
+
 			try {
 				spielerKoffer = scan.nextInt();
 				int index = ungeoffneteKoffer.indexOf(spielerKoffer);
@@ -63,13 +59,6 @@ public class DealOrNoDeal {
 				System.out.print("Wähle deinen Koffer aus: ");
 				spielerKoffer = scan.nextInt();
 
-				int index = ungeoffneteKoffer.indexOf(spielerKoffer);
-				// Betrag des persönlichen Koffers speichern (wird am Ende ggf. ausgegeben)
-				spielerBetrag = betraege.get(index);
-				// Betrag und Koffer aus den aktiven Listen entfernen
-				// (der persönliche Koffer nimmt nicht am normalen Spielablauf teil)
-				betraege.remove(index);
-				ungeoffneteKoffer.remove(index);
 				break;
 
 			} catch (Exception e) {
@@ -92,7 +81,7 @@ public class DealOrNoDeal {
 			Collections.shuffle(betraege);
 
 		} catch (Exception e) {
-
+			System.out.print("Datei konnte nicht gelesen werden!");
 		}
 	}
 
@@ -179,7 +168,7 @@ public class DealOrNoDeal {
 				try {
 					eingabe = scan.nextInt();
 				} catch (Exception e) {
-					//System.err.println("Bitte eine Zahl eingeben.");
+					// System.err.println("Bitte eine Zahl eingeben.");
 					i--;
 					continue;
 				}
