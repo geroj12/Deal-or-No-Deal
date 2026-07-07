@@ -46,18 +46,20 @@ public class DealOrNoDeal {
 	 */
 	private static void privaterKofferAuswahl() {
 
-		System.out.println("\nUngeöffnete Koffer: " + ungeoffneteKoffer);
 
-		while (spielerKoffer < 1 || spielerKoffer > 10) {
+		while (spielerKoffer >= 1 || spielerKoffer <= 10) {
 
 			try {
+				System.out.println("\nUngeöffnete Koffer: " + ungeoffneteKoffer);
+
+				
+				System.out.print("Wähle deinen Koffer aus: ");
+
 				spielerKoffer = scan.nextInt();
 				int index = ungeoffneteKoffer.indexOf(spielerKoffer);
 				spielerBetrag = betraege.get(index);
 				betraege.remove(index);
 				ungeoffneteKoffer.remove(index);
-				System.out.print("Wähle deinen Koffer aus: ");
-				spielerKoffer = scan.nextInt();
 
 				break;
 
@@ -155,7 +157,7 @@ public class DealOrNoDeal {
 				break;
 			}
 
-			System.out.println("\nRunde " + runden);
+			System.out.println("Runde " + runden);
 			for (int i = 0; i < anzahlKofferZiehungen; i++) {
 				// Abbruch falls nur noch 1 Koffer übrig
 				if (ungeoffneteKoffer.size() <= 1)
@@ -166,7 +168,7 @@ public class DealOrNoDeal {
 				System.out.print("Welchen Koffer möchten Sie öffnen? ");
 				int eingabe;
 				try {
-					eingabe = scan.nextInt();
+					eingabe = Integer.parseInt(scan.nextLine());
 				} catch (Exception e) {
 					// System.err.println("Bitte eine Zahl eingeben.");
 					i--;
