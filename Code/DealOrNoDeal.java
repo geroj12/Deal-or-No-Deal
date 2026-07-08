@@ -16,7 +16,7 @@ public class DealOrNoDeal {
 	static ArrayList<Double> betraege = new ArrayList<>();
 	static ArrayList<Double> uebersicht = new ArrayList<>();
 	static int runden = 1;
-	static int kofferAnzahl = 11;
+	static int kofferAnzahl = 10;
 	private static int spielerKoffer;
 	private static double spielerBetrag = 0; // Speichert den Geldbetrag im persönlichen Koffer des Spielers
 
@@ -174,7 +174,7 @@ public class DealOrNoDeal {
 	 */
 	private static void privaterKofferAuswahl() {
 
-		while (spielerKoffer >= 1 || spielerKoffer <= 10) {
+		while (!(spielerKoffer >= 1 && spielerKoffer <= 10)) {
 
 			try {
 				System.out.println("\nUngeöffnete Koffer: " + ungeoffneteKoffer);
