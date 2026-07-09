@@ -6,6 +6,7 @@
 import java.util.*;
 import java.io.*;
 
+//Main Klasse
 public class DealOrNoDeal {
 
 	// Variablen
@@ -23,7 +24,7 @@ public class DealOrNoDeal {
 	 * Initialisiert das Menü Objekt sowie die Spielereingabe und Menüauswahl wird
 	 * verarbeitet.
 	 * 
-	 * @param args
+	 * @param args Parameter die beim Start des Programms übergeben werden können.
 	 */
 	public static void main(String[] args) {
 		Menue menue = new Menue();
@@ -60,6 +61,7 @@ public class DealOrNoDeal {
 	private static void readDateiUndInitialisiereBetraege() {
 
 		try (Scanner scan = new Scanner(new File("Geldbeträge.txt"))) {
+			;
 			while (scan.hasNextLine()) {
 				String zeile = scan.nextLine();
 				betraege.add(Double.parseDouble(zeile));

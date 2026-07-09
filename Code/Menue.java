@@ -5,7 +5,7 @@
 import java.util.*;
 
 public class Menue {
-	public String begruessung = "Herzlich Willkommen, bei Deal or No Deal!" + "\nBitte gebe deinen Namen ein: ";
+	public String begruessung = "Herzlich Willkommen, bei Deal or No Deal!" + "\nBitte gebe deinen Namen ein:";
 	private String playerName = "";
 	private int eingabe;
 
@@ -20,7 +20,7 @@ public class Menue {
 
 		while (true) {
 			try {
-				eingabe = Integer.parseInt(scan.nextLine());
+				eingabe = scan.nextInt();
 
 				if (eingabe == 1 || eingabe == 2) {
 					break;
