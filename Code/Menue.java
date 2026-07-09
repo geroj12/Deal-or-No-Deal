@@ -4,15 +4,14 @@
 */
 import java.util.*;
 
-
-//Shakiba ANFANG
 public class Menue {
-	public String begruessung = "Herzlich Willkommen, bei Deal or No Deal!" + "\nBitte gebe deinen Namen ein: ";
+	public String begruessung = "Herzlich Willkommen, bei Deal or No Deal!" + "\nBitte gebe deinen Namen ein:";
 	private String playerName = "";
 	private int eingabe;
 
 	/**
-	 * Liest die Eingabe die vom Spieler eingegeben wird über die Tastatur und leitet zum Hauptspiel hinüber.
+	 * Liest die Eingabe die vom Spieler eingegeben wird über die Tastatur und
+	 * leitet zum Hauptspiel hinüber.
 	 */
 	void playerInput() {
 		Scanner scan = new Scanner(System.in);
@@ -21,7 +20,7 @@ public class Menue {
 
 		while (true) {
 			try {
-				eingabe = Integer.parseInt(scan.nextLine());
+				eingabe = scan.nextInt();
 
 				if (eingabe == 1 || eingabe == 2) {
 					break;
@@ -53,4 +52,3 @@ public class Menue {
 		scan.close();
 	}
 }
-//Shakiba ENDE

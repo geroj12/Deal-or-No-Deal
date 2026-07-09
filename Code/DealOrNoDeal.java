@@ -6,10 +6,10 @@
 import java.util.*;
 import java.io.*;
 
+//Main Klasse
 public class DealOrNoDeal {
 
 	// Variablen
-	// Shakiba ANFANG
 	static Scanner scan = new Scanner(System.in);
 	static ArrayList<Integer> ungeoffneteKoffer = new ArrayList<>();
 	static ArrayList<Integer> geoffneteKoffer = new ArrayList<>();
@@ -24,21 +24,19 @@ public class DealOrNoDeal {
 	 * Initialisiert das Menü Objekt sowie die Spielereingabe und Menüauswahl wird
 	 * verarbeitet.
 	 * 
-	 * @param args
+	 * @param args Parameter die beim Start des Programms übergeben werden können.
 	 */
 	public static void main(String[] args) {
 		Menue menue = new Menue();
 		System.out.println(menue.begruessung);
 		menue.playerInput();
 	}
-	// Shakiba ENDE
 
 	/**
 	 * Einstiegspunkt ins Spiel
 	 */
 
-	// Aleksey ANFANG
-	public static void hauptSpiel(){
+	public static void hauptSpiel() {
 		initialisiereKoffer();
 		readDateiUndInitialisiereBetraege();
 		privaterKofferAuswahl();
@@ -63,6 +61,7 @@ public class DealOrNoDeal {
 	private static void readDateiUndInitialisiereBetraege() {
 
 		try (Scanner scan = new Scanner(new File("Geldbeträge.txt"))) {
+			;
 			while (scan.hasNextLine()) {
 				String zeile = scan.nextLine();
 				betraege.add(Double.parseDouble(zeile));
@@ -131,8 +130,7 @@ public class DealOrNoDeal {
 
 				System.out.println("Bereits geöffnete Koffer: " + geoffneteKoffer);
 			}
-			// Aleksey ENDE
-			// Felix ANFANG
+
 			// Bankangebot nach jeder abgeschlossenen Runde berechnen und anzeigen
 			double angebot = berechneBankangebot();
 
@@ -232,5 +230,4 @@ public class DealOrNoDeal {
 			System.out.println("Noch im Spiel befindliche Beträge: " + String.format("%.2f", betrag) + " €");
 		}
 	}
-	// Felix ENDE
 }
