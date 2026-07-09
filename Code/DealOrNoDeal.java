@@ -174,25 +174,32 @@ public class DealOrNoDeal {
 	 * Spielerkoffer wird auswählt vom Spieler. Betrag wird vermerkt für Spielende.
 	 */
 	private static void privaterKofferAuswahl() {
-		while (!(spielerKoffer >= 1 && spielerKoffer <= 10)) {
-			try {
-				System.out.println("\nUngeöffnete Koffer: " + ungeoffneteKoffer);
+	    while (true) {
+	        System.out.println("\nUngeöffnete Koffer: " + ungeoffneteKoffer);
+	        System.out.print("Wähle deinen Koffer aus: ");
 
-				System.out.print("Wähle deinen Koffer aus: ");
+	        int index;
+	        try {
+	            spielerKoffer = Integer.parseInt(scan.nextLine());
+	        //Spieler gibt keine Zahl ein
+	        } catch (Exception e) {
+	            System.err.println("Bitte eine gültige Zahl eingeben!");
+	            continue;
+	        }
 
-				spielerKoffer = Integer.parseInt(scan.nextLine());
-				int index = ungeoffneteKoffer.indexOf(spielerKoffer);
-				spielerBetrag = betraege.get(index);
-				betraege.remove(index);
-				ungeoffneteKoffer.remove(index);
+	        index = ungeoffneteKoffer.indexOf(spielerKoffer);
+	        //Spieler gibt eine Zahl ein die nicht im Index steht
+	        if (index == -1) {
+	            System.err.println("Diesen Koffer gibt es nicht! Bitte einen aus der Liste wählen.");
+	            continue;
+	        }
 
-				break;
-
-			} catch (Exception e) {
-				System.err.println("Bitte eine Zahl von 1-10 eingeben.");
-
-			}
-		}
+	        // Eingabe gültig -> Koffer übernehmen
+	        spielerBetrag = betraege.get(index);
+	        betraege.remove(index);
+	        ungeoffneteKoffer.remove(index);
+	        break;
+	    }
 	}
 
 	/**
@@ -205,7 +212,7 @@ public class DealOrNoDeal {
 
 		double summe = 0;
 
-		// 1. Alle noch offenen Beträge addieren
+		// Alle noch offenen Beträge addieren
 		for (int i = 0; i < betraege.size(); i++) {
 			summe = summe + betraege.get(i);
 		}
