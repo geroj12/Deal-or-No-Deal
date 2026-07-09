@@ -9,7 +9,6 @@ import java.io.*;
 public class DealOrNoDeal {
 
 	// Variablen
-	// Shakiba ANFANG
 	static Scanner scan = new Scanner(System.in);
 	static ArrayList<Integer> ungeoffneteKoffer = new ArrayList<>();
 	static ArrayList<Integer> geoffneteKoffer = new ArrayList<>();
@@ -31,18 +30,16 @@ public class DealOrNoDeal {
 		System.out.println(menue.begruessung);
 		menue.playerInput();
 	}
-	// Shakiba ENDE
 
 	/**
 	 * Einstiegspunkt ins Spiel
 	 */
 
-	// Aleksey ANFANG
-	public static void hauptSpiel(){
+	public static void hauptSpiel() {
 		initialisiereKoffer();
 		readDateiUndInitialisiereBetraege();
-		kofferZiehungen();
 		privaterKofferAuswahl();
+		kofferZiehungen();
 
 	}
 
@@ -131,8 +128,7 @@ public class DealOrNoDeal {
 
 				System.out.println("Bereits geöffnete Koffer: " + geoffneteKoffer);
 			}
-			// Aleksey ENDE
-			// Felix ANFANG
+
 			// Bankangebot nach jeder abgeschlossenen Runde berechnen und anzeigen
 			double angebot = berechneBankangebot();
 
@@ -225,5 +221,4 @@ public class DealOrNoDeal {
 			System.out.println("Noch im Spiel befindliche Beträge: " + String.format("%.2f", betrag) + " €");
 		}
 	}
-	// Felix ENDE
 }
