@@ -41,8 +41,8 @@ public class DealOrNoDeal {
 	public static void hauptSpiel(){
 		initialisiereKoffer();
 		readDateiUndInitialisiereBetraege();
-		kofferZiehungen();
 		privaterKofferAuswahl();
+		kofferZiehungen();
 
 	}
 
