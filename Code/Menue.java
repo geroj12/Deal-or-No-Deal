@@ -30,6 +30,7 @@ public class Menue {
 
 			} catch (Exception e) {
 				System.err.println("Ungültige Eingabe! Bitte eine Zahl eingeben.");
+				scan.next();
 			}
 		}
 
